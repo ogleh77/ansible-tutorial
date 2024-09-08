@@ -4,7 +4,7 @@
   become: yes
   apt:
     name: python:3
-    state: latest
+    state: absent
     update_cache: yes
 
 - name: create directory insha Allah
