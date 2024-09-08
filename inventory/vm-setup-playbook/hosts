@@ -1,0 +1,4 @@
+[servers]
+13.234.114.29 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/mohamedogleh/.ssh/my-server-key-pair.pem
+
+

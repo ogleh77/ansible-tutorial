@@ -1,0 +1,19 @@
+---
+
+- name: installing packages insha Allah
+  become: yes
+  apt:
+    name: python:3
+    state: latest
+    update_cache: yes
+
+- name: create directory insha Allah
+  file:
+    path: ./basic-http-server
+    state: directory
+
+- name: install nginx insha Allah
+  become: yes
+  apt:
+    name: nginx
+    state: latest

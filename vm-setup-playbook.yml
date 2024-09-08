@@ -1,0 +1,7 @@
+---
+
+- name: my-test
+  hosts: all
+  remote_user: ubuntu
+  roles:
+    - python
