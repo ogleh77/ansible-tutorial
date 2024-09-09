@@ -1,19 +1,68 @@
----
 
-- name: installing packages insha Allah
-  become: yes
-  apt:
-    name: python:3
-    state: absent
-    update_cache: yes
-
-- name: create directory insha Allah
+- name: remove multiple files
   file:
-    path: ./basic-http-server
-    state: directory
+    path: ./{{item}}
+    state: absent
+  loop:
+    - file-1
+    - file-2
+    - file-3
 
-- name: install nginx insha Allah
-  become: yes
-  apt:
-    name: nginx
-    state: latest
+
+#- name: create file if not exist
+#  file:
+#    path: ./greet
+#    state: file
+
+
+
+#- name: Create multiple directories in a loop
+#  file:
+#    path: ./test/{{item}}
+#    state: directory
+#  loop:
+#    - test-1
+#    - test-2
+#    - test-3
+
+
+
+#- name: shell module
+#  vars:
+#    message: "Asc dadkoow"
+#  shell: echo {{message}} >  greet
+
+
+#- name: delete file greeting
+#  file:
+#    path: ./greeting
+#    state: absent
+
+## /roles/python/tasks/main.yml
+#
+## Step 1: Create actions-runner directory
+#- name: Create actions-runner directory
+#  file:
+#    path: ./actions-runner
+#    state: directory
+#
+## Step 2: Download the latest runner package
+#- name: Download the GitHub Actions runner tarball
+#  get_url:
+#    url: https://github.com/actions/runner/releases/download/v2.319.1/actions-runner-linux-x64-2.319.1.tar.gz
+#    dest: ./actions-runner/actions-runner-linux-x64-2.319.1.tar.gz
+#    mode: '0755'
+#
+## Step 3: Optional: Validate the hash
+#- name: Validate the hash of the downloaded tarball
+#  shell: echo "3f6efb7488a183e291fc2c62876e14c9ee732864173734facc85a1bfb1744464  actions-runner-linux-x64-2.319.1.tar.gz" | shasum -a 256 -c
+#  args:
+#    chdir: ./actions-runner
+#  ignore_errors: yes  # Ignore errors if the validation fails
+#
+## Step 4: Extract the installer
+#- name: Extract the GitHub Actions runner tarball
+#  ansible.builtin.unarchive:
+#    src:  ./actions-runner/actions-runner-linux-x64-2.319.1.tar.gz
+#    dest: ./actions-runner
+#    remote_src: yes
